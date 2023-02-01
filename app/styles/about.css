@@ -1,5 +1,10 @@
 @import 'init.css';
 
+#about-container {
+  margin-top: 90px;
+  margin-bottom: 50px;
+}
+
 #about-container ul,
 #about-container p {
   margin-bottom: 30px;
