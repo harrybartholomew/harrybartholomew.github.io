@@ -1,7 +1,7 @@
 ---
 title: "Reading list checker"
 subtitle: "Method to automate the checking of word-processed reading lists"
-thumbnail: "../images/reading list checker image.jpg"
+thumbnail: "../images/Reading list checker image.jpg"
 ---
 
 [See on Github](https://github.com/QueensCollegeLibrary/Reading_list_checker)
