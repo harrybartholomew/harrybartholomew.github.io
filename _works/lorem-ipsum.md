@@ -1,17 +1,15 @@
 ---
-title: "Lorem Ipsum"
-subtitle: "Sed sit amet arcu a diam tincidunt porta"
-thumbnail: "/images/800x600.png"
+title: "Reading list checker"
+subtitle: "Method to automate the checking of word-processed reading lists"
+thumbnail: "/images/reading list checker image.jpg"
 ---
 
-![dummy image](/images/800x600.png)
+![Reading list checker](/images/reading list checker image.jpg)
 
-![dummy image](/images/800x600.png)
+# Reading list checker (2022)
 
-_**Lorem Ipsum (2019)**_
+[See on Github](https://github.com/QueensCollegeLibrary/Reading_list_checker)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-Sed sit amet arcu a diam tincidunt porta.
-
-Fusce ut elit euismod massa convallis volutpat vitae et magna.
+## About
+This work-in-progress aims to take the input of a word-processed bibliography, check it against a library's holdings, 
+and return the items on the bibliography held by that library.
