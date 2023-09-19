@@ -99,8 +99,10 @@ class ArticlePublisher {
    */
   private static getArticleByFilename(filename: string) {
     const mdContent = String(fs.readFileSync(`${this.ARTICLE_ORIGIN_PATH}/${filename}`));
-    const mdContentWithToc = `::: toggle(Table of Contents)\n[[toc]]\n:::\n${mdContent}`;
-    const htmlContent: string = this.md.render(this.extractContent(mdContentWithToc));
+//     const mdContentWithToc = `::: toggle(Table of Contents)\n[[toc]]\n:::\n${mdContent}`;
+    const mdContentWithoutToc = mdContent.replace(/::: toggle\(Table of Contents\)[\s\S]*?:::/g, '');
+//     const htmlContent: string = this.md.render(this.extractContent(mdContentWithToc));
+    const htmlContent: string = this.md.render(this.extractContent(mdContentWithoutToc));
     const metaInfo: ArticleMetaInfo = this.extractMetaInfo(String(mdContent));
 
     return new Article({
