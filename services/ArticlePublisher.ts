@@ -55,9 +55,9 @@ class ArticlePublisher {
       delimiters: 'gitlab',
     })
     .use(mdAnchor)
-    .use(mdTableOfContents, {
-      includeLevel: [1, 2, 3],
-    })
+//     .use(mdTableOfContents, {
+//       includeLevel: [1, 2, 3],
+//     })
     .use(mdContainer, 'toggle', {
       validate(params) {
         return params.trim().match(/^toggle\((.*)\)$/);
