@@ -3,24 +3,26 @@
 #container {
     width: 100%; /* Make sure the container takes up the full width of the screen */
     display: flex;
-    justify-content: flex-end;
+    flex-direction: row;
+}
+
+@media (max-width: 800px) {
+    .container {
+        flex-direction: column;
+    }
 }
 
         /* Style for the widget div */
 #gr_updates_widget {
-    width: 30%; /* Adjust the width as per your needs */
+    flex: 30%; /* Adjust the width as per your needs */
 }
 
 #content {
-    width: 70%;
+    flex: 70%;
 }
 
         /* Clear the float to prevent issues with following content */
-.clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
-}
+
 
 #gr_updates_widget{
     border-radius: 5px;
