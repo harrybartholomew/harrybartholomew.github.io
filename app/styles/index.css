@@ -2,20 +2,20 @@
 
 #container {
     width: 100%; /* Make sure the container takes up the full width of the screen */
-    }
+}
 
         /* Style for the widget div */
 #gr_updates_widget {
     float: right; /* Float the widget to the right side */
     width: 30%; /* Adjust the width as per your needs */
-    }
+}
 
         /* Clear the float to prevent issues with following content */
 .clearfix::after {
     content: "";
     clear: both;
     display: table;
-        }
+}
 
 #gr_updates_widget{
     border-radius: 5px;
