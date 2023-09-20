@@ -27,7 +27,7 @@
 #gr_updates_widget{
     border-radius: 5px;
     background-color:#fff;
-    border:solid #000000 10px;
+    border:solid #000000 5px;
     -webkit-box-shadow: 0px 0px 4px 1px #595959,
     inset 0px 0px 0px 1px #7D730B;
     -moz-box-shadow: 0px 0px 4px 1px #595959,
