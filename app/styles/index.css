@@ -2,12 +2,17 @@
 
 #container {
     width: 100%; /* Make sure the container takes up the full width of the screen */
+    display: flex;
+    justify-content: flex-end;
 }
 
         /* Style for the widget div */
 #gr_updates_widget {
-    float: right; /* Float the widget to the right side */
     width: 30%; /* Adjust the width as per your needs */
+}
+
+#content {
+    width: 70%;
 }
 
         /* Clear the float to prevent issues with following content */
