@@ -7,18 +7,18 @@
 }
 
 @media (max-width: 800px) {
-    .container {
+    #container {
         flex-direction: column;
     }
 }
 
         /* Style for the widget div */
 #gr_updates_widget {
-    flex: 30%; /* Adjust the width as per your needs */
+    flex: 25%; /* Adjust the width as per your needs */
 }
 
 #content {
-    flex: 70%;
+    flex: 75%;
 }
 
         /* Clear the float to prevent issues with following content */
