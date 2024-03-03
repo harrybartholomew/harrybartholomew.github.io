@@ -3,6 +3,8 @@ interface ArticleMetaInfoModel {
 
   title: string;
 
+  author: string;
+
   subtitle?: string;
 
   date: string;

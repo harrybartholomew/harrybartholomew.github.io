@@ -5,7 +5,7 @@ class ArticleMetaInfo implements ArticleMetaInfoModel {
 
   title: string;
 
-  author: "https://orcid.org/0009-0007-5527-6062";
+  author: string;
 
   subtitle?: string;
 
@@ -20,6 +20,7 @@ class ArticleMetaInfo implements ArticleMetaInfoModel {
         break;
 
       case 'title':
+      case 'author':
       case 'subtitle':
       case 'date':
       case 'tags':
