@@ -5,6 +5,8 @@ class ArticleMetaInfo implements ArticleMetaInfoModel {
 
   title: string;
 
+  author: "https://orcid.org/0009-0007-5527-6062";
+
   subtitle?: string;
 
   date: string;
@@ -43,6 +45,10 @@ class ArticleMetaInfo implements ArticleMetaInfoModel {
 
   getDate(): string {
     return this.date;
+  }
+
+  getAuthor(): string {
+    return this.author
   }
 
   getTags(): string[] {

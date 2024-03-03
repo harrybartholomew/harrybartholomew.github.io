@@ -107,6 +107,7 @@ class ArticlePublisher {
 
     return new Article({
       id: metaInfo.getId(),
+      author: metaInfo.getAuthor(),
       title: metaInfo.getTitle(),
       subtitle: metaInfo.getSubtitle(),
       date: metaInfo.getDate(),
