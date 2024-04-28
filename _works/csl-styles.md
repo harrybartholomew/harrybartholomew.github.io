@@ -1,7 +1,7 @@
 ---
 title: "CSL citation styles"
 subtitle: "Automating referencing styles"
-thumbnail: "../images/fire_1f525.png"
+thumbnail: "../images/writing-hand_270d-fe0f.png"
 ---
 
 [😻 Github link](https://github.com/harrybartholomew/CSL_styles)

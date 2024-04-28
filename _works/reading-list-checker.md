@@ -1,7 +1,7 @@
 ---
 title: "Leganto list checker"
 subtitle: "Automating bibliographic verification"
-thumbnail: "../images/fire_1f525.png"
+thumbnail: "../images/clipboard_1f4cb.png"
 ---
 
 [😻 Github link](https://github.com/harrybartholomew/leganto_list_checker)
