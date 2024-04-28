@@ -1,10 +1,9 @@
 ---
 title: "Leganto list checker"
 subtitle: "Automating bibliographic verification"
-thumbnail: "../images/Leganto list checker.jpg"
 ---
 
-[~Github link~](https://github.com/harrybartholomew/leganto_list_checker)
+[😻 Github link](https://github.com/harrybartholomew/leganto_list_checker)
 
 
 This project aims to allow librarians and library staff to automatically check how their holdings (on Ex

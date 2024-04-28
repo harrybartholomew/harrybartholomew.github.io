@@ -1,10 +1,9 @@
 ---
 title: "CSL citation styles"
 subtitle: "Automating referencing styles"
-thumbnail: "../images/CSL styles.jpg"
 ---
 
-[~Github link~](https://github.com/harrybartholomew/CSL_styles)
+[😻 Github link](https://github.com/harrybartholomew/CSL_styles)
 
 Reference management software, such as Zotero and Mendeley, use the *Citation Style Language* (CSL) XML format to
 transform
