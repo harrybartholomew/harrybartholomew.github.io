@@ -85,3 +85,13 @@ img {
   color: white;
   background-color: black;
 }
+
+@media only screen and (max-width: 600px) {
+  /* Styles for screens smaller than 600px (typical mobile phones) */
+  #top-container {
+    position: static;
+  }
+  #main-container {
+    padding-top: 0px;
+  }
+}
