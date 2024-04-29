@@ -29,3 +29,10 @@
   background-color: black;
   color: white;
 }
+
+@media only screen and (max-width: 600px) {
+  /* Styles for screens smaller than 600px (typical mobile phones) */
+  #about-container {
+    padding-top: 0px;
+  }
+}
