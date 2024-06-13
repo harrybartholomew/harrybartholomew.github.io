@@ -27,6 +27,17 @@
   text-rendering: optimizeLegibility;
 }
 
+@font-face {
+    font-family: 'sitelenpona';
+    src: url('../../fonts/NishikiTeki-MVxaJ.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.sitelenpona {
+    font-family: 'sitelenpona', sans-serif;
+}
+
 body {
   margin: auto;
   padding: 0px 30px 50px 30px;
