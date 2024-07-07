@@ -20,6 +20,10 @@
       <ul>
         <% articles.reverse().map((article) => { %>
           <li class="articles-list-item">
+          <% if (article.url) { %>
+          <a href="<%= article.url %>">
+          <% } %>
+            <% else{ %>
             <a href="./article/<%= article.id %>.html">
               <h1><%= article.title %></h1>
               <% if (article.subtitle) { %>

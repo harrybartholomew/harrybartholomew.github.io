@@ -10,6 +10,8 @@ interface ArticleMetaInfoModel {
   date: string;
 
   tags: string | string[];
+
+  url: string;
 }
 
 export default ArticleMetaInfoModel;

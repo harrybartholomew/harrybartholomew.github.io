@@ -13,6 +13,8 @@ class ArticleMetaInfo implements ArticleMetaInfoModel {
 
   tags: string | string[];
 
+  url?: string;
+
   setProp(name: string, value: any) {
     switch (name) {
       case 'id':
@@ -26,6 +28,7 @@ class ArticleMetaInfo implements ArticleMetaInfoModel {
       case 'tags':
         this[name] = value;
         break;
+      case 'url':
 
       default:
         throw new Error(`Unkown property '${name}'.`);
@@ -58,6 +61,10 @@ class ArticleMetaInfo implements ArticleMetaInfoModel {
     }
 
     return this.tags;
+  }
+
+  getUrl(): string {
+    return this.url
   }
 }
 

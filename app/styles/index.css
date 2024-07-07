@@ -1,5 +1,10 @@
 @import 'init.css';
 
+img {
+padding-top: 5px;
+padding-bottom: 5px;
+}
+
 #container {
     width: 100%; /* Make sure the container takes up the full width of the screen */
     display: flex;
