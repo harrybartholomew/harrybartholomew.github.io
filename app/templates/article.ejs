@@ -8,6 +8,9 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="DCTERMS.creator" content=<%- article.author %> >
   <meta name="DCTERMS.date" content=<%- article.date %> >
+  <% article.tags.map((tag) => { %>
+    <meta name="DCTERMS.subject" content=<%- article.tag %> >
+  <% }) %>
   <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
   <link rel="preload" href="../styles/article.css" as="style">
   <link rel="stylesheet" href="../styles/article.css">
