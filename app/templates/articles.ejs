@@ -21,9 +21,19 @@
         <% articles.reverse().map((article) => { %>
           <li class="articles-list-item">
           <% if (article.url) { %>
-          <a href="<%= article.url %>">
-          <% } %>
-            <% else{ %>
+            <a href="<%= article.url %>">
+              <h1><%= article.title %></h1>
+              <% if (article.subtitle) { %>
+                <h2><%= article.subtitle %></h2>
+              <% } %>
+              <time><%= article.date %></time>
+              <ul class="articles-tags">
+                <% article.tags.map((tag) => { %>
+                  <li>#<%= tag.trim() %></li>
+                <% }) %>
+              </ul>
+            </a>
+          <% } else { %>
             <a href="./article/<%= article.id %>.html">
               <h1><%= article.title %></h1>
               <% if (article.subtitle) { %>
@@ -36,6 +46,7 @@
                 <% }) %>
               </ul>
             </a>
+          <% } %>
           </li>
         <% }) %>
       </ul>

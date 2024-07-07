@@ -25,10 +25,11 @@ class ArticleMetaInfo implements ArticleMetaInfoModel {
       case 'author':
       case 'subtitle':
       case 'date':
+      case 'url':
+
       case 'tags':
         this[name] = value;
         break;
-      case 'url':
 
       default:
         throw new Error(`Unkown property '${name}'.`);
