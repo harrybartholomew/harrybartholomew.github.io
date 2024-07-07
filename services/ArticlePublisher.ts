@@ -112,7 +112,7 @@ class ArticlePublisher {
       subtitle: metaInfo.getSubtitle(),
       date: metaInfo.getDate(),
       tags: metaInfo.getTags(),
-      url: getUrl(),
+      url: metaInfo.getUrl(),
       content: htmlContent,
     });
   }
