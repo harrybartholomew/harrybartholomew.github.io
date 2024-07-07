@@ -11,7 +11,7 @@ interface ArticleMetaInfoModel {
 
   tags: string | string[];
 
-  url: string;
+  url?: string;
 }
 
 export default ArticleMetaInfoModel;
