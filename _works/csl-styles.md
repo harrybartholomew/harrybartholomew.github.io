@@ -14,4 +14,6 @@ While there are over 10,000 styles in the [Zotero style repository](https://www.
 find they need either to reference in a style not already included or to make minor changes to a pre-existing style to
 suit their specific needs.
 
-This repository will contain CSL files I've written for students and staff at my institution.
+This repository will contain CSL files I've written for students and staff at my institution. So far including:  
+• Chatham House  
+• Journal for Religion, Film and Media
