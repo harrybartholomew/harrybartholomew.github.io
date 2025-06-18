@@ -39,3 +39,24 @@
   font-size: 16px;
   line-height: 200%;
 }
+
+#work-content-container code,
+#work-content-container code span {
+  font-family: 'Consolas', 'Monaco', 'Ubuntu Mono', 'Andale Mono', monospace;
+}
+
+#work-content-container p code,
+#work-content-container li code {
+  background-color: #EEEEEE;
+  padding: 0 5px 0 5px;
+}
+
+#work-content-container blockquote {
+  border-left: 3px #DFDFDF solid;
+  padding-left: 15px;
+}
+
+#work-content-container blockquote p {
+  font-family: 'Noto Serif KR', serif;
+  font-style: italic;
+}
