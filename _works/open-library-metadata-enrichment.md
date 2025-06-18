@@ -3,6 +3,9 @@ title: "Metadata enrichment with Open Library"
 subtitle: "Retrieving metadata from ISBNs using the Open Library API"
 thumbnail: "../images/label_1f3f7-fe0f.png"
 ---
+[😻 Github link](https://github.com/harrybartholomew/Open-Library-metadata-enrichment)
+
+
 Chatham House Library uses a non-MARC cataloguing format, with each bibliographic record created by a librarian from scratch without copy-cataloguing.
 The older records on the catalogue were lacking core metadata fields, severely hindering their discoverability. I conducted 
 a project to enrich records with two data elements: (1) abstracts and (2) languages.
@@ -82,7 +85,17 @@ Then, the work ID (for the *Africa Emerges* example above, `OL19641753W`) is pas
 ```
   "description": {
     "type": "/type/text",
-    "value": "\"Sub-Saharan Africa is no longer a troubled 'dark continent.' Most of its constituent countries are now enjoying significant economic growth and political progress. The new Africa has begun to banish the miseries of the past, and appears ready to play an important role in world affairs. Thanks to shifts in leadership and governance, an African renaissance could be at hand. Yet the road ahead is not without obstacles. As world renowned expert on African affairs, Robert Rotberg, expertly shows, Africa today may be poised to deliver real rewards to its long suffering citizens but it faces critical new crises as well as abundant new opportunities. Africa Emerges draws on a wealth of empirical data to explore the key challenges Africa must overcome in the coming decades. From peacekeeping to health and disease, from energy needs to education, this illuminating analysis diagnoses the remaining impediments Africa will need to surmount if it is to emerge in 2050 as a prosperous, peaceful, dynamic collection of robust large and small nations. Africa Emerges offers an unparalleled guide for all those interested in the dynamics of modern Africa's political, economic, and social development.\"--Publisher's note."
+    "value": "\"Sub-Saharan Africa is no longer a troubled 'dark continent.' Most of its constituent countries are now 
+    enjoying significant economic growth and political progress. The new Africa has begun to banish the miseries of the 
+    past, and appears ready to play an important role in world affairs. Thanks to shifts in leadership and governance, 
+    an African renaissance could be at hand. Yet the road ahead is not without obstacles. As world renowned expert on 
+    African affairs, Robert Rotberg, expertly shows, Africa today may be poised to deliver real rewards to its long 
+    suffering citizens but it faces critical new crises as well as abundant new opportunities. Africa Emerges draws on a
+     wealth of empirical data to explore the key challenges Africa must overcome in the coming decades. From 
+     peacekeeping to health and disease, from energy needs to education, this illuminating analysis diagnoses the
+     remaining impediments Africa will need to surmount if it is to emerge in 2050 as a prosperous, peaceful, dynamic 
+     collection of robust large and small nations. Africa Emerges offers an unparalleled guide for all those interested 
+     in the dynamics of modern Africa's political, economic, and social development.\"--Publisher's note."
   },
 ```
 
@@ -99,7 +112,3 @@ try:
     elif isinstance(description_data, dict):
         description = description_data.get("value")
 ```
-
-
-[😻 Github link](https://github.com/harrybartholomew/Open-Library-metadata-enrichment)
-
