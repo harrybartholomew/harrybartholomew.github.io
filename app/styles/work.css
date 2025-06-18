@@ -40,6 +40,15 @@
   line-height: 200%;
 }
 
+#work-content-container pre {
+  padding: 15px 20px 20px 20px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  background: #282a36;
+  color: #f8f8f2;
+}
+
+
 #work-content-container code,
 #work-content-container code span {
   font-family: 'Consolas', 'Monaco', 'Ubuntu Mono', 'Andale Mono', monospace;
