@@ -52,3 +52,6 @@ padding-bottom: 5px;
 #gr_updates_widget img{
 	border-style:none;
 }
+#profile-pic img{
+    max-width:200px;
+}
