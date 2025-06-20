@@ -5,19 +5,22 @@ thumbnail: "../images/label_1f3f7-fe0f.png"
 ---
 [😻 Github link](https://github.com/harrybartholomew/Open-Library-metadata-enrichment)
 
-
-Chatham House Library uses a non-MARC cataloguing format, with each bibliographic record created by a librarian from scratch without copy-cataloguing.
-The older records on the catalogue were lacking core metadata fields, severely hindering their discoverability. I conducted 
+Chatham House Library uses a non-MARC cataloguing format, with each bibliographic record created by a librarian from
+scratch without copy-cataloguing.
+The older records on the catalogue were lacking core metadata fields, severely hindering their discoverability. I
+conducted
 a project to enrich records with two data elements: (1) abstracts and (2) languages.
 
+Without the control numbers, system codes, and other identifiers that might be present in an imported MARC record,
+systematic
+metadata enrichment was done using ISBNs only; pre-1970 records (and post-1970 records without ISBNs) could not
+therefore be included.
 
-Without the control numbers, system codes, and other identifiers that might be present in an imported MARC record, systematic
-metadata enrichment was done using ISBNs only; pre-1970 records (and post-1970 records without ISBNs) could not therefore be included.
-
-
-The ISBN of a record was passed to the [Open Library API](https://openlibrary.org/dev/docs/api/books) alongside my email address
+The ISBN of a record was passed to the [Open Library API](https://openlibrary.org/dev/docs/api/books) alongside my email
+address
 and project name, which are requested by Open Library in case they need more information about one's use of the API.
 The ISBN API retrieves metadata for the specific edition in JSON format; e.g., for `9780745661636`, one retrieves:
+
 ```
 {
   "title": "Africa Emerges: Consummate Challenges, Abundant Opportunities",
@@ -54,7 +57,9 @@ The ISBN API retrieves metadata for the specific edition in JSON format; e.g., f
   ],
 }
 ```
-The above (abridged) Open Library data is for the "edition" type. To get the abstract/description and language data, you need to 
+
+The above (abridged) Open Library data is for the "edition" type. To get the abstract/description and language data, you
+need to
 access the "work" record using the work ID, which is retrieved as follows:
 
 ```python
@@ -68,7 +73,6 @@ HEADERS = {
 
 
 def get_description(isbn):
-
     def get_work_id(isbn):
         try:
             response = requests.get(url=f"http://openlibrary.org/isbn/{isbn}.json", timeout=10, headers=HEADERS)
@@ -80,7 +84,8 @@ def get_description(isbn):
     work_id = get_work_id(isbn)
 ```
 
-Then, the work ID (for the *Africa Emerges* example above, `OL19641753W`) is passed back to the API to retrieve the description field:
+Then, the work ID (for the *Africa Emerges* example above, `OL19641753W`) is passed back to the API to retrieve the
+description field:
 
 ```
   "description": {
@@ -99,7 +104,7 @@ Then, the work ID (for the *Africa Emerges* example above, `OL19641753W`) is pas
   },
 ```
 
-The "description" in Open Library work records can have either a string or, as above, key-value pairs as its value, so 
+The "description" in Open Library work records can have either a string or, as above, key-value pairs as its value, so
 the below code accounts for the different data types:
 
 ```python

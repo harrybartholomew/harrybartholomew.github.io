@@ -29,6 +29,11 @@ class WorkPublisher {
     linkify: true,
     typographer: true,
     quotes: '“”‘’',
+    highlight: (str, language) => {
+      if (language && highlightJs.getLanguage(language)) {
+        return `<pre class="hljs"><code>${highlightJs.highlight(str, { language }).value}</code></pre>`;
+      }
+      return `<pre class="hljs"><code>${ArticlePublisher.md.utils.escapeHtml(str)}</code></pre>`;
   });
 
   /**

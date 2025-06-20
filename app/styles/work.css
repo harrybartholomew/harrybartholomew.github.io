@@ -1,4 +1,6 @@
 @import 'init.css';
+@import 'dracula.css';
+@import 'katex.css';
 
 #work-container {
   margin-top: 90px;
@@ -44,10 +46,10 @@
   padding: 15px 20px 20px 20px;
   margin-top: 25px;
   margin-bottom: 25px;
+  overflow-x: auto;
   background: #282a36;
   color: #f8f8f2;
 }
-
 
 #work-content-container code,
 #work-content-container code span {
