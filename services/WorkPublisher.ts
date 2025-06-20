@@ -1,10 +1,22 @@
 /* eslint-disable no-console */
 /* eslint-disable import/no-extraneous-dependencies */
 
-import MarkdownIt from 'markdown-it';
+
 import * as ejs from 'ejs';
 import * as fs from 'fs';
 import * as path from 'path';
+
+import MarkdownIt from 'markdown-it';
+import * as katex from 'katex';
+import highlightJs from 'highlight.js';
+import mdFootnote from 'markdown-it-footnote';
+import mdTex from 'markdown-it-texmath';
+import mdAnchor from 'markdown-it-anchor';
+import mdTableOfContents from 'markdown-it-table-of-contents';
+import mdContainer from 'markdown-it-container';
+import mdInlineComment from 'markdown-it-inline-comments';
+import mdLazyImage from 'markdown-it-image-lazy-loading';
+import mdMermaid from 'markdown-it-mermaid';
 
 import WorkMetaInfo from './classes/WorkMetaInfo';
 import Work from './classes/Work';
@@ -33,8 +45,35 @@ class WorkPublisher {
       if (language && highlightJs.getLanguage(language)) {
         return `<pre class="hljs"><code>${highlightJs.highlight(str, { language }).value}</code></pre>`;
       }
-      return `<pre class="hljs"><code>${ArticlePublisher.md.utils.escapeHtml(str)}</code></pre>`;
-  });
+      return `<pre class="hljs"><code>${WorkPublisher.md.utils.escapeHtml(str)}</code></pre>`;
+    },
+  }).use(mdFootnote)
+    .use(mdInlineComment)
+    .use(mdMermaid)
+    .use(mdTex.use(katex), {
+      delimiters: 'gitlab',
+    })
+    .use(mdAnchor)
+//     .use(mdTableOfContents, {
+//       includeLevel: [1, 2, 3],
+//     })
+    .use(mdContainer, 'toggle', {
+      validate(params) {
+        return params.trim().match(/^toggle\((.*)\)$/);
+      },
+      render(tokens, idx) {
+        const content = tokens[idx].info.trim().match(/^toggle\((.*)\)$/);
+        if (tokens[idx].nesting === 1) {
+          return `<details><summary>${WorkPublisher.md.utils.escapeHtml(content[1])}</summary>\n`;
+        }
+        return '</details>\n';
+      },
+    })
+    .use(mdLazyImage, {
+      decoding: true,
+      image_size: true,
+      base_path: path.join(__dirname, '../'),
+    });
 
   /**
    * Extracts content excluding front matter block.
