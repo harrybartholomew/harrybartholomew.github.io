@@ -1,0 +1,70 @@
+<!doctypehtml>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Leganto list checker</title>
+
+  <meta name="viewport"content="width=device-width,initial-scale=1">
+  <meta http-equiv="X-UA-Compatible"content="ie=edge">
+
+  <link rel="shortcut icon"href="../assets/favicon.ico"type="image/x-icon">
+  <link rel="preload"href="../styles/work.css"as="style">
+  <link rel="stylesheet"href="../styles/work.css">
+</head>
+<body>
+  <header id="top-container"role="navigation">
+    <nav>
+  <a class="logo-link"href="/">
+    <h1>Harry Bartholomew</h1>
+    <span>librarian, london, england</span>
+  </a>
+  <span class="sitelenpona"style="font-size: 24px">&#xF1911;&#xF194D;&#xF1997;&#xF196D;&#xF1996;&#xF192A;&#xF1998;</span>
+  <small>
+    <a id="about"class="info-link"href="/about.html">👀About</a> /
+    <a id="works"class="info-link"href="/works.html">🔥Projects</a> /
+    <a id="blog posts"class="info-link"href="/articles.html">📚Writing & talks</a> /
+    <a id="github"class="info-link"href="https://github.com/harrybartholomew">😻Github</a> /
+    <a id="linkedin"class="info-link"href="https://www.linkedin.com/in/harry-bartholomew-5763b018b/">🔗LinkedIn</a> /
+    <a id="orcid"class="info-link"href="https://orcid.org/0009-0007-5527-6062/">🪷ORCID</a>
+  </small>
+</nav>
+
+  </header>
+  <main id="main-container">
+    <article id="work-container">
+      <h1 id="work-title">
+        Leganto list checker
+      </h1>
+      <h2 id="work-subtitle">
+        Automating bibliographic verification
+      </h2>
+      <article id="work-content-container">
+        <p><a href="https://github.com/harrybartholomew/leganto_list_checker">😻 Github link</a></p>
+<p>This project aims to allow librarians and library staff to automatically check how their holdings (on Ex
+Libris’ Alma) meet the prescribed reading on reading lists made with Ex Libris’ Leganto software, taking into account
+alternative edtions, enriching holdings data using the Internet Archive’s Open Library API.</p>
+<h1 id="requirements-and-instructions"tabindex="-1">Requirements and instructions</h1>
+<p>Download both library holdings data from Alma and reading list data from Leganto in CSV format. You may need to delete
+the first few lines from the Leganto CSV export that come before the table headings. Edit <a href="http://main.py">main.py</a> to include your
+library name, the reading list title, and the path to the 2 CSV files. Then run <a href="http://main.py">main.py</a>.</p>
+<h1 id="how-it-works"tabindex="-1">How it works</h1>
+<p>This project iterates through reading list items, checking for matches in the following ways:</p>
+<ol>
+<li>The library’s name is checked for in the holdings data contained on the reading list.</li>
+<li>The ISBN on the reading list is checked for in the library holdings.</li>
+<li>ISBNs of alternative editions are retrieved using the Open Library API, then each of these ISBNs is checked for in
+the library holdings.</li>
+<li>The titles of the reading list items are searched for in library holdings.</li>
+</ol>
+<h1 id="output"tabindex="-1">Output</h1>
+<p>The code creates an annotated, colour-coded bibliography in HTML.</p>
+<h1 id="limitations"tabindex="-1">Limitations</h1>
+<p>Open Library’s database does not always link different editions of the same work together, inhibiting checking for
+alternative editions. Checking for text matches between normalised title strings does not account for translations or
+changes in title between editions.</p>
+
+      
+    </article>
+  </article></main>
+
+
