@@ -1,0 +1,147 @@
+<!doctypehtml>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Metadata enrichment with Open Library</title>
+
+  <meta name="viewport"content="width=device-width,initial-scale=1">
+  <meta http-equiv="X-UA-Compatible"content="ie=edge">
+
+  <link rel="shortcut icon"href="../assets/favicon.ico"type="image/x-icon">
+  <link rel="preload"href="../styles/work.css"as="style">
+  <link rel="stylesheet"href="../styles/work.css">
+</head>
+<body>
+  <header id="top-container"role="navigation">
+    <nav>
+  <a class="logo-link"href="/">
+    <h1>Harry Bartholomew</h1>
+    <span>librarian, london, england</span>
+  </a>
+  <span class="sitelenpona"style="font-size: 24px">&#xF1911;&#xF194D;&#xF1997;&#xF196D;&#xF1996;&#xF192A;&#xF1998;</span>
+  <small>
+    <a id="about"class="info-link"href="/about.html">👀About</a> /
+    <a id="works"class="info-link"href="/works.html">🔥Projects</a> /
+    <a id="blog posts"class="info-link"href="/articles.html">📚Writing & talks</a> /
+    <a id="github"class="info-link"href="https://github.com/harrybartholomew">😻Github</a> /
+    <a id="linkedin"class="info-link"href="https://www.linkedin.com/in/harry-bartholomew-5763b018b/">🔗LinkedIn</a> /
+    <a id="orcid"class="info-link"href="https://orcid.org/0009-0007-5527-6062/">🪷ORCID</a>
+  </small>
+</nav>
+
+  </header>
+  <main id="main-container">
+    <article id="work-container">
+      <h1 id="work-title">
+        Metadata enrichment with Open Library
+      </h1>
+      <h2 id="work-subtitle">
+        Retrieving metadata from ISBNs using the Open Library API
+      </h2>
+      <article id="work-content-container">
+        <p><a href="https://github.com/harrybartholomew/Open-Library-metadata-enrichment">😻 Github link</a></p>
+<p>Chatham House Library uses a non-MARC cataloguing format, with each bibliographic record created by a librarian from
+scratch without copy-cataloguing.
+The older records on the catalogue were lacking core metadata fields, severely hindering their discoverability. I
+conducted
+a project to enrich records with two data elements: (1) abstracts and (2) languages.</p>
+<p>Without the control numbers, system codes, and other identifiers that might be present in an imported MARC record,
+systematic
+metadata enrichment was done using ISBNs only; pre-1970 records (and post-1970 records without ISBNs) could not
+therefore be included.</p>
+<p>The ISBN of a record was passed to the <a href="https://openlibrary.org/dev/docs/api/books">Open Library API</a> alongside my email
+address
+and project name, which are requested by Open Library in case they need more information about one’s use of the API.
+The ISBN API retrieves metadata for the specific edition in JSON format; e.g., for <code>9780745661636</code>, one retrieves:</p>
+<pre class="hljs"><code>{
+  &quot;title&quot;: &quot;Africa Emerges: Consummate Challenges, Abundant Opportunities&quot;,
+  &quot;number_of_pages&quot;: 288,
+  &quot;isbn_13&quot;: [
+    &quot;9780745661636&quot;
+  ],
+  &quot;isbn_10&quot;: [
+    &quot;0745661637&quot;
+  ],
+  &quot;publish_date&quot;: &quot;Jun 17, 2013&quot;,
+  &quot;key&quot;: &quot;/books/OL26861841M&quot;,
+  &quot;authors&quot;: [
+    {
+      &quot;key&quot;: &quot;/authors/OL2815667A&quot;
+    }
+  ],
+  &quot;works&quot;: [
+    {
+      &quot;key&quot;: &quot;/works/OL19641753W&quot;
+    }
+  ],
+  &quot;type&quot;: {
+    &quot;key&quot;: &quot;/type/edition&quot;
+  },
+  &quot;lc_classifications&quot;: [
+    &quot;DT20&quot;,
+    &quot;HC800 .R68 2013&quot;,
+    &quot;HC800 .R675 2013&quot;
+  ],
+  &quot;oclc_numbers&quot;: [
+    &quot;811963330&quot;,
+    &quot;850056150&quot;
+  ],
+}
+</code></pre>
+<p>The above (abridged) Open Library data is for the “edition” type. To get the abstract/description and language data, you
+need to
+access the “work” record using the work ID, which is retrieved as follows:</p>
+<pre class="hljs"><code><span class="hljs-comment"># Configuration</span>
+APPLICATION_NAME = <span class="hljs-string">&quot;&quot;</span>  <span class="hljs-comment"># to identify your project to Open Library</span>
+CONTACT_EMAIL = <span class="hljs-string">&quot;&quot;</span>  <span class="hljs-comment"># in case Open Library needs to contact you</span>
+
+HEADERS = {
+    <span class="hljs-string">&quot;User-Agent&quot;</span>: <span class="hljs-string">f&quot;<span class="hljs-subst">{APPLICATION_NAME}</span> (<span class="hljs-subst">{CONTACT_EMAIL}</span>)&quot;</span>
+}
+
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">get_description</span>(<span class="hljs-params">isbn</span>):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">get_work_id</span>(<span class="hljs-params">isbn</span>):
+        <span class="hljs-keyword">try</span>:
+            response = requests.get(url=<span class="hljs-string">f&quot;http://openlibrary.org/isbn/<span class="hljs-subst">{isbn}</span>.json&quot;</span>, timeout=<span class="hljs-number">10</span>, headers=HEADERS)
+            data = response.json()
+            works = data.get(<span class="hljs-string">&quot;works&quot;</span>)
+            <span class="hljs-keyword">if</span> works:
+                <span class="hljs-keyword">return</span> works[<span class="hljs-number">0</span>][<span class="hljs-string">&quot;key&quot;</span>]
+
+    work_id = get_work_id(isbn)
+</code></pre>
+<p>Then, the work ID (for the <em>Africa Emerges</em> example above, <code>OL19641753W</code>) is passed back to the API to retrieve the
+description field:</p>
+<pre class="hljs"><code>  &quot;description&quot;: {
+    &quot;type&quot;: &quot;/type/text&quot;,
+    &quot;value&quot;: &quot;\&quot;Sub-Saharan Africa is no longer a troubled 'dark continent.' Most of its constituent countries are now 
+    enjoying significant economic growth and political progress. The new Africa has begun to banish the miseries of the 
+    past, and appears ready to play an important role in world affairs. Thanks to shifts in leadership and governance, 
+    an African renaissance could be at hand. Yet the road ahead is not without obstacles. As world renowned expert on 
+    African affairs, Robert Rotberg, expertly shows, Africa today may be poised to deliver real rewards to its long 
+    suffering citizens but it faces critical new crises as well as abundant new opportunities. Africa Emerges draws on a
+     wealth of empirical data to explore the key challenges Africa must overcome in the coming decades. From 
+     peacekeeping to health and disease, from energy needs to education, this illuminating analysis diagnoses the
+     remaining impediments Africa will need to surmount if it is to emerge in 2050 as a prosperous, peaceful, dynamic 
+     collection of robust large and small nations. Africa Emerges offers an unparalleled guide for all those interested 
+     in the dynamics of modern Africa's political, economic, and social development.\&quot;--Publisher's note.&quot;
+  },
+</code></pre>
+<p>The “description” in Open Library work records can have either a string or, as above, key-value pairs as its value, so
+the below code accounts for the different data types:</p>
+<pre class="hljs"><code><span class="hljs-keyword">try</span>:
+    response = requests.get(url=<span class="hljs-string">f&quot;http://openlibrary.org<span class="hljs-subst">{work_id}</span>.json&quot;</span>, timeout=<span class="hljs-number">10</span>, headers=HEADERS)
+    data = response.json()
+    description_data = data.get(<span class="hljs-string">&quot;description&quot;</span>)
+    <span class="hljs-keyword">if</span> <span class="hljs-built_in">isinstance</span>(description_data, <span class="hljs-built_in">str</span>):
+        description = description_data
+    <span class="hljs-keyword">elif</span> <span class="hljs-built_in">isinstance</span>(description_data, <span class="hljs-built_in">dict</span>):
+        description = description_data.get(<span class="hljs-string">&quot;value&quot;</span>)
+</code></pre>
+
+      
+    </article>
+  </article></main>
+
+
